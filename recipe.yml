@@ -1,0 +1,360 @@
+﻿$engine: 3
+name: PlumeESXLegacy
+version: 3.0.0
+author: Tabarra, Hamy & Chip
+description: A full featured and highly configurable yet lightweight ESX Legacy base that can be easily extended. 
+
+tasks:
+  # Download default CFX resources
+  - action: download_github
+    src: https://github.com/citizenfx/cfx-server-data
+    ref: 0169fdddaa9511558cfa17bcf80a832f56c359ff
+    subpath: resources
+    dest: ./resources
+  
+  # Download and prepare server.cfg / loadingscreen / database
+  - action: download_github
+    src: https://github.com/tabarra/PlumeESX-recipe
+    ref: main
+    dest: ./tmp/plume_esx
+
+  - action: move_path
+    src: ./tmp/plume_esx/server.cfg
+    dest: ./server.cfg
+
+  - action: move_path
+    src: ./tmp/plume_esx/loadingscreen
+    dest: ./resources/loadingscreen
+
+  - action: connect_database
+  - action: query_database
+    file: ./tmp/plume_esx/plume.sql
+
+
+
+  # Download basic resources and ESX dependencies
+
+  - action: download_github
+    src: https://github.com/esx-framework/esx-legacy
+    ref: f9d54dfd8f82582cd4a87a41350d6622bdc5a21b
+    dest: ./resources/[legacy]
+
+
+  - action: download_github
+    src: https://github.com/tabarra/simpledrift
+    ref: 2ed57c224ae70549fbcfccc957a00ff496b78c77
+    dest: ./resources/simpledrift
+
+  - action: download_github
+    src: https://github.com/Bob74/bob74_ipl
+    ref: 1f4cec0b41f90762994191d06ad6eb9c038e9ff5
+    dest: ./resources/bob74_ipl
+  
+
+  - action: download_github
+    src: https://github.com/Hamy-os/plumehello
+    ref: 7518ba43d7f310afd571a407c1f5f2e9862a7d65
+    dest: ./resources/plumehello
+
+  - action: download_github
+    src: https://github.com/brouznouf/fivem-mysql-async
+    ref: c5fa317a65acfe2eef453257e19e3b4fde137089
+    dest: ./resources/mysql-async
+
+  ## KL HUD v2
+  - action: download_github
+    src: https://github.com/Kilichi/Kl_HudV2
+    ref: ac8a321ff335706509bdc6122a2984a80082e669
+    dest: ./resources/[hud]/Kl_HudV2
+
+  - action: replace_string
+    file: ./resources/[hud]/Kl_HudV2/client/client.lua
+    search: 'esx_status:onTick'
+    replace: 'Kl_Hud:onTick'
+    
+    
+  ### ADD Ons
+  - action: download_github
+    src: https://github.com/eblio/3dme
+    dest: ./resources/scripts/eblio/3dme
+    
+  - action: download_github
+    src: https://github.com/mythicrp/mythic_notify
+    dest:    ./resources/mythic_notify
+    
+    
+  - action: download_github
+    src: https://github.com/Greek-Skid/ESX_CommunityServiceSecuree
+    dest:    ./resources/ESX_CommunityService
+    
+    
+  - action: download_github
+    src: https://github.com/ultrahacx/acidtrip_rework
+    dest:    ./resources/acidtrip
+    
+    
+  - action: download_github
+    src: https://github.com/DamienTehDemon/Robbery-System-Fivem
+    dest:    ./resources/Robbery-System
+    
+    
+  - action: download_github
+    src: https://github.com/eurofra1d/BaitCarPro
+    dest:    ./resources/BaitCarPro
+    
+  - action: download_github
+    src: https://github.com/DevLanceGood/eas-fivem
+    dest:    ./resources/eas
+    
+  - action: download_github
+    src: https://github.com/LaFouine25/esx_braceletgps
+    dest:    ./resources/esx_braceletgps
+    
+  - action: download_github
+    src: https://github.com/renzuzu/enginesound
+    dest:    ./resources/enginesound
+    
+  - action: download_github
+    src: https://github.com/octoblu/meshblu-core-dispatcher
+    dest:    ./resources/
+    
+  - action: download_github
+    src: https://github.com/Blumlaut/crouch-n-prone
+    dest:    ./resources/crouch-n-prone
+    
+  - action: download_github
+    src: https://github.com/discordjs/discord.js
+    dest:    ./resources/discord
+    
+  - action: download_github
+    src: https://github.com/FAXES/DiscordWhitelist
+    dest:    ./resources/DiscordWhitelist
+    
+  - action: download_github
+    src: https://github.com/sk3106/jones-fivem_discordbot
+    dest:    ./resources/discordbot
+    
+  - action: download_github
+    src: https://github.com/andristum/dpemotes
+    dest:    ./resources/dpemotes
+    
+  - action: download_github
+    src: https://github.com/DevLanceGood/eas-fivem
+    dest:    ./resources/eas-fivem
+    
+  - action: download_github
+    src: https://github.com/Whit3XLightning/wld-delallveh
+    dest:    ./resources/delallveh
+    
+  - action: download_github
+    src: https://github.com/kanersps/essentialmode
+    dest:    ./resources/essentialmode
+    
+  - action: download_github
+    src: https://github.com/VictorNJ21/FiveM-RP-Essentials
+    dest:    ./resources/Essentials
+    
+    
+  - action: download_github
+    src: https://github.com/silentriders/esx_bobbypin
+    dest:    ./resources/esx_bobbypin
+    
+  - action: download_github
+    src: https://github.com/DonJoan/esx_carlock
+    dest:    ./resources/esx_carlock
+    
+  - action: download_github
+    src: https://github.com/antonjjohansson/esx_carwash
+    dest:    ./resources/esx_carwash
+    
+  - action: download_github
+    src: https://github.com/ElNelyo/esx_discord_bot
+    dest:    ./resources/esx_discord_bot
+    
+  - action: download_github
+    src: https://github.com/FuryFight3r/dgrp_mcdonaldsjob
+    dest:    ./resources/dgrp_mcdonaldsjob
+    
+  - action: download_github
+    src: https://github.com/qalle-git/esx_duty
+    dest:    ./resources/esx_duty
+    
+  - action: download_github
+    src: https://github.com/HumanTree92/esx_extraitems
+    dest:    ./resources/esx_extraitems
+    
+  - action: download_github
+    src: https://github.com/FlashSn1peZxx2/esx_gangs
+    dest:    ./resources/esx_gangs
+    
+  - action: download_github
+    src: https://github.com/Guy293/esx_guy293_HolsterWeapon
+    dest:    ./resources/esx_guy293_HolsterWeapon
+    
+  - action: download_github
+    src: https://github.com/Caesar-TML/esx_hide_hud
+    dest:    ./resources/esx_hide_hud
+    
+  - action: download_github
+    src: https://github.com/gta-rest-in-peace/esx_hifi
+    dest:    ./resources/esx_hifi
+    
+  - action: download_github
+    src: https://github.com/Trsak/esx_inventoryhud
+    dest:    ./resources/esx_inventoryhud
+    
+  - action: download_github
+    src: https://github.com/Trsak/esx_inventoryhud_trunk
+    dest:    ./resources/esx_inventoryhud_trunk
+    
+  - action: download_github
+    src: https://github.com/Cr4zZyBipBiip/esx_ktackle
+    dest:    ./resources/esx_ktackle
+    
+  - action: download_github
+    src: https://github.com/slenderman020/esx_lawyer
+    dest:    ./resources/esx_lawyer
+    
+  - action: download_github
+    src: https://github.com/qalle-git/esx_marker
+    dest:    ./resources/esx_marker
+    
+  - action: download_github
+    src: https://github.com/esx-community/esx_npcdrugsales
+    dest:    ./resources/esx_npcdrugsales
+    
+  - action: download_github
+    src: https://github.com/Sov-Nation/dd_outlawalerts
+    dest:    ./resources/outlawalerts
+    
+  - action: download_github
+    src: https://github.com/jonteohr/esx_repairkit
+    dest:    ./resources/esx_repairkit
+    
+  - action: download_github
+    src: https://github.com/ImJincod/ivan_fix
+    dest:    ./resources/ivan_fix
+    
+  - action: download_github
+    src: https://github.com/esx-community/fivem-ipl
+    dest:    ./resources/fivem-ipl
+    
+  - action: download_github
+    src: https://github.com/SadraKhorami/esx_scoreboard
+    dest: ./resources/esx_scoreboard
+    
+  - action: download_github
+    src: https://github.com/KRILLE123/esx-kr-vehicle-push
+    dest:    ./resources/esx-kr-vehicle-push
+    
+    
+  - action: download_github
+    src: https://github.com/qalle-git/esx-qalle-jail
+    dest:    ./resources/esx-qalle-jail
+    
+  - action: download_github
+    src: https://github.com/TheIndra55/fivem-burglary
+    dest: ./resources/fivem-burglary
+    
+  - action: download_github
+    src: https://github.com/DevTestingPizza/fivem-ipl
+    dest:    ./resources/fivem-ipl
+    
+    
+  - action: download_github
+    src: https://github.com/FivemTools/ft_libs
+    dest:    ./resources/ft_libs
+    
+    
+  - action: download_github
+    src: https://github.com/HassanSajidSultan/fivem-mdt
+    dest:    ./resources/mdt
+    
+    
+  - action: download_github
+    src: https://github.com/phpadmin1/medSystem
+    dest:    ./resources/medSystem
+    
+  - action: download_github
+    src: https://github.com/KillaMike/esx_doorlock_mhacking
+    dest: ./resources/esx_doorlock_mhacking
+    
+  - action: download_github
+    src: https://github.com/thelindat/nui_doorlock
+    dest:    ./resources/nui_doorlock
+    
+    
+  - action: download_github
+    src: https://github.com/thelindat/mythic_progbar
+    dest:    ./resources/mythic_progbar
+    
+  - action: download_github
+    src: https://github.com/frytaskocur/narkosell
+    dest: ./resources/narkosell
+    
+  - action: download_github
+    src: https://github.com/alexguirre/RAGENativeUI
+    dest:    ./resources/RAGENativeUI
+    
+    
+  - action: download_github
+    src: https://github.com/AvarianKnight/pma-voice
+    dest:    ./resources/pma-voice
+    
+  - action: download_github
+    src: https://github.com/AigleIsBack/SpotifySystem
+    dest: ./resources/SpotifySystem
+    
+  - action: download_github
+    src: https://github.com/Nick78111/pNotify
+    dest:    ./resources/pNotify
+    
+    
+  - action: download_github
+    src: https://github.com/wowpanda/progressbar
+    dest:    ./resources/progressbar
+    
+  - action: download_github
+    src: https://github.com/TeamdreamP/pvp
+    dest: ./resources/pvp
+    
+  - action: download_github
+    src: https://github.com/radiant-gaming-public/rad_gsr
+    dest:    ./resources/rad_gsr
+    
+    
+  - action: download_github
+    src: https://github.com/loaf-scripts/loaf_keysystem
+    dest:    ./resources/loaf_keysystem
+    
+    
+    
+
+  ## GCPhone stuff
+  
+  - action: download_github
+    src: https://github.com/N3MTV/gcphone
+    dest: ./resources/gcphone
+    
+    
+  - action: download_github
+    src: https://github.com/Adico1162/esx_addons_gcphone_
+    dest:    ./resources/esx_addons_gcphone
+    
+
+
+  ## Final touches
+  - action: replace_string
+    mode: all_vars
+    file: ./resources/loadingscreen/config.js
+    
+  - action: remove_path
+    path: ./tmp
+
+  - action: remove_path
+    path: ./resources/esx_example
+
+  - action: remove_path
+    path: ./resources/server.cfg
+
+
